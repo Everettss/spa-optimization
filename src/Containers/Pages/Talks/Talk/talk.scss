@@ -1,0 +1,15 @@
+
+@import '../../../../styles/variables';
+
+.label {
+  font-weight: 700;
+}
+
+.slides {
+  color: $red;
+  text-decoration: none;
+  &:hover, &:active, &:focus {
+    text-decoration: underline;
+    color: $red;
+  }
+}

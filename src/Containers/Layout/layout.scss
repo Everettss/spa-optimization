@@ -1,0 +1,16 @@
+
+@import '../../styles/variables';
+
+body {
+  font-size: 22px;
+  color: $black;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.root {
+  max-width: 600px;
+}
+
+.container {
+  padding: 15px 0;
+}

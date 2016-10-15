@@ -1,0 +1,31 @@
+{
+    "extends": "airbnb", // the most popular rule package
+    "env": {
+        "browser": true, // window object and browser stuff
+        "node": true, // enable require for commonJS
+        "es6": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module" // enable es6 import/export
+    },
+
+    "globals": {
+        "BROWSER": true
+    },
+
+    "rules": {
+        "indent": [2, 4, {"SwitchCase": 1}],
+        "max-len": [2, 120, 2],
+        "prefer-const": 0, // disabled because we don't want 80% of variables be const
+        "spaced-comment": 0, // hard to comment code - hard to develop
+        "func-names": 0, // default is only warning - not worth
+        "no-useless-constructor": 0, // this rule is broken
+        "no-trailing-spaces": [2, { "skipBlankLines": true }], // skipBlankLines - its OK to have only spaces in line
+        "react/jsx-indent-props": [2, 4],
+        "react/jsx-indent": [2, 4],
+        "react/jsx-boolean-value": 0, // hard to maintain on library code
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "import/no-unresolved": [2, { "ignore": ["^!"] }]
+    }
+}
