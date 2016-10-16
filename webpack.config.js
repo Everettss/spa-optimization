@@ -63,7 +63,6 @@ module.exports = {
                 },
                 comments: false,
             }),
-            new webpack.optimize.AggressiveMergingPlugin(),
         ] : []),
     ],
 };

@@ -13,16 +13,16 @@ app.get('*', (req, res) => {
         const { js, css } = JSON.parse(manifest).main;
 
         const html =
-`<html>
-    <head>
-        <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-        <link rel="stylesheet" type="text/css" href="${css}">
-        <script async src="${js}"></script>
-    </head>
-    <body>
-        <div id="root">Loading</div>
-    </body>
-</html>`;
+            `<html>
+                <head>
+                    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+                    <link rel="stylesheet" type="text/css" href="${css}">
+                    <script async src="${js}"></script>
+                </head>
+                <body>
+                    <div id="root">Loading</div>
+                </body>
+            </html>`;
         res.status(200).send(html);
     });
 });
