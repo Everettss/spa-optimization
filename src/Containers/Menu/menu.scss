@@ -9,25 +9,25 @@
   }
 }
 
-.menu--logo {
+.menuLogo {
   height: 120px;
   width: 120px;
   float: left;
 }
 
-.menu--links {
+.menuLinks {
   float: left;
   margin-left: 15px;
   padding-left: 30px;
   border-left: 3px solid $red;
 }
 
-.menu--link {
+.menuLink {
   display: block;
   padding: 5px 0;
   color: $black;
   text-decoration: none;
-  &:hover, &:active, &:focus, &.menu--link__active {
+  &:hover, &:active, &:focus, &.menuLinkActive {
     text-decoration: none;
     color: $red;
   }

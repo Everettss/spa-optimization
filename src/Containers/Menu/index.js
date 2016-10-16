@@ -1,31 +1,32 @@
 
 import React from 'react';
 import { Link } from 'react-router';
-import './menu.scss';
+import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import s from './menu.scss';
 import logo from './img/logo.png';
 
 const Menu = () => (
-    <div className="menu">
-        <img src={logo} alt="WarsawJS" className="menu--logo" />
-        <div className="menu--links">
+    <div className={s.menu}>
+        <img src={logo} alt="WarsawJS" className={s.menuLogo} />
+        <div className={s.menuLinks}>
             <Link
-                className="menu--link"
-                activeClassName="menu--link__active"
+                className={s.menuLink}
+                activeClassName={s.menuLinkActive}
                 onlyActiveOnIndex={true}
                 to="/"
             >
                 Home
             </Link>
             <Link
-                className="menu--link"
-                activeClassName="menu--link__active"
+                className={s.menuLink}
+                activeClassName={s.menuLinkActive}
                 to="/talks"
             >
                 Talks
             </Link>
             <Link
-                className="menu--link"
-                activeClassName="menu--link__active"
+                className={s.menuLink}
+                activeClassName={s.menuLinkActive}
                 to="/gallery"
             >
                 Gallery
@@ -34,4 +35,4 @@ const Menu = () => (
     </div>
 );
 
-export default Menu;
+export default withStyles(s)(Menu);

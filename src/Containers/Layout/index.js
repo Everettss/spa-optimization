@@ -1,13 +1,14 @@
 
 import React, { PropTypes } from 'react';
-import './layout.scss';
+import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import s from './layout.scss';
 import Menu from '../Menu';
 import Footer from '../Footer';
 
 const Layout = props => (
-    <div className="root">
+    <div className={s.root}>
         <Menu />
-        <div className="container">
+        <div className={s.container}>
             {props.children}
         </div>
         <Footer />
@@ -18,4 +19,4 @@ Layout.propTypes = {
     children: PropTypes.object,
 };
 
-export default Layout;
+export default withStyles(s)(Layout);

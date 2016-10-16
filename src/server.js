@@ -6,6 +6,7 @@ import express from 'express';
 import path from 'path';
 import fs from 'fs';
 import routes from './routes';
+import WithStylesContext from './WithStylesContext';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -15,16 +16,25 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('*', (req, res) => {
     const history = createMemoryHistory(req.url);
     match({ history, routes }, (error, redirectLocation, renderProps) => {
-        let body = ReactDOMServer.renderToString(<Router {...renderProps} />);
+        const css = [];
+        let body = ReactDOMServer.renderToString(
+            <WithStylesContext
+                onInsertCss={(...styles) => {
+                    styles.forEach(style => css.push(style._getCss())); // eslint-disable-line no-underscore-dangle
+                }}
+            >
+                <Router {...renderProps} />
+            </WithStylesContext>
+        );
         fs.readFile('./build/webpack-assets.json', 'utf8', (err, manifest) => {
-            const { js, css } = JSON.parse(manifest).main;
+            const { js } = JSON.parse(manifest).main;
 
             const html =
                 `<html>
                     <head>
                         <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-                        <link rel="stylesheet" type="text/css" href="${css}">
                         <script async src="${js}"></script>
+                        <style id="css">${css.join('')}</style>
                     </head>
                     <body>
                         <div id="root">${body}</div>

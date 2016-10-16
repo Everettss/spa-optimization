@@ -1,8 +1,9 @@
 
 import React, { Component } from 'react';
 import Select from 'react-select';
-import 'react-select/dist/react-select.css';
-import './talks.scss';
+import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import rs from '!isomorphic-style-loader!original-css!react-select/dist/react-select.css';
+import s from './talks.scss';
 import Talk from './Talk';
 import talksList from './talksList';
 
@@ -21,14 +22,13 @@ class Talks extends Component {
         return (
             <div>
                 <Select
-                    className="test"
                     options={talksList}
                     value={this.state.value}
                     onChange={this.selectChange}
                     clearable={false}
                     searchable={true} // eslint-disable-line react/jsx-boolean-value
                 />
-                <div className="talks">
+                <div className={s.talks}>
                     <Talk
                         author={this.state.author}
                         description={this.state.description}
@@ -40,4 +40,4 @@ class Talks extends Component {
     }
 }
 
-export default Talks;
+export default withStyles(s, rs)(Talks);

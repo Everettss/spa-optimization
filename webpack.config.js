@@ -14,11 +14,29 @@ const loaders = [
         loader: 'babel',
     },
     {
+        test: [/\.scss$/, /\.css$/],
+        loaders: [
+            'isomorphic-style-loader',
+            `css-loader?${DEBUG ? 'sourceMap&' : 'minimize&'}modules&localIdentName=` +
+            `${DEBUG ? '[name]_[local]_[hash:base64:3]' : '[hash:base64:4]'}`,
+            'sass-loader'
+        ],
+    },
+    {
         test: /\.js$/,
         loader: `eslint-loader${DEBUG ? '?{rules:{"no-console":0}}' : ''}`,
         exclude: /node_modules/,
     },
 ];
+
+const resolveLoader = {
+    alias: {
+        'original-css': [
+            `css-loader?${DEBUG ? 'sourceMap&' : 'minimize&'}` +
+            `localIdentName=${DEBUG ? '[name]_[local]_[hash:base64:3]' : '[hash:base64:4]'}`,
+        ],
+    },
+};
 
 const urlLoader = {
     test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
@@ -29,14 +47,6 @@ const urlLoader = {
         name: DEBUG ? '[name].[ext]' : '[hash].[ext]',
     }
 };
-
-const styleLader =  {
-    test: [/\.scss$/, /\.css$/],
-    loader: ExtractTextPlugin.extract(
-        'style-loader',
-        'css-loader!sass-loader'),
-};
-
 
 const client = {
     entry: path.resolve(__dirname, 'src', 'client.js'),
@@ -53,10 +63,10 @@ const client = {
     module: {
         loaders: [
             ...loaders,
-            styleLader,
             urlLoader
         ]
     },
+    resolveLoader,
     devtool: DEBUG ? 'eval-source-map' : false,
     plugins: [
         new AssetsPlugin({ path: path.join(__dirname, 'build')}),
@@ -97,10 +107,6 @@ const server = {
     module: {
         loaders: [
             ...loaders,
-            {
-                test: [/\.scss$/, /\.css$/],
-                loader: 'ignore-loader',
-            },
             Object.assign({}, urlLoader, {
                 query: Object.assign({}, urlLoader.query, {
                     emitFile: false,
@@ -108,6 +114,7 @@ const server = {
             })
         ],
     },
+    resolveLoader,
     plugins: [
         new webpack.optimize.LimitChunkCountPlugin({
             maxChunks: 1,

@@ -1,7 +1,8 @@
 
 import React from 'react';
 import ImageGallery from 'react-image-gallery';
-import 'react-image-gallery/styles/css/image-gallery.css';
+import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import ig from '!isomorphic-style-loader!original-css!react-image-gallery/styles/css/image-gallery.css';
 import imagesList from './imagesList';
 
 const Gallery = () => (
@@ -13,4 +14,4 @@ const Gallery = () => (
     </div>
 );
 
-export default Gallery;
+export default withStyles(ig)(Gallery);
