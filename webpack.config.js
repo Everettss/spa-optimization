@@ -30,7 +30,7 @@ const urlLoader = {
     }
 };
 
-const styleLader =  {
+const styleLoader =  {
     test: [/\.scss$/, /\.css$/],
     loader: ExtractTextPlugin.extract(
         'style-loader',
@@ -53,7 +53,7 @@ const client = {
     module: {
         loaders: [
             ...loaders,
-            styleLader,
+            styleLoader,
             urlLoader
         ]
     },
