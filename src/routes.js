@@ -1,23 +1,32 @@
 
 import Layout from './Containers/Layout';
-import Home from './Containers/Pages/Home';
-import Talks from './Containers/Pages/Talks';
-import Gallery from './Containers/Pages/Gallery';
 
 const routes = {
     path: '/',
     component: Layout,
     indexRoute: {
-        component: Home,
+        getComponent: (nextState, cb) => {
+            require.ensure([], require => {
+                cb(null, require('./Containers/Pages/Home').default);
+            });
+        },
     },
     childRoutes: [
         {
             path: 'talks',
-            component: Talks,
+            getComponent: (nextState, cb) => {
+                require.ensure([], require => {
+                    cb(null, require('./Containers/Pages/Talks').default);
+                });
+            },
         },
         {
             path: 'gallery',
-            component: Gallery,
+            getComponent: (nextState, cb) => {
+                require.ensure([], require => {
+                    cb(null, require('./Containers/Pages/Gallery').default);
+                });
+            },
         },
     ],
 };

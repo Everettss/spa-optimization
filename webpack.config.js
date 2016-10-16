@@ -13,6 +13,7 @@ module.exports = {
         path: path.resolve(__dirname, 'build', 'public'),
         publicPath: '/',
         filename: DEBUG ? 'bundle.js' : '[hash].js',
+        chunkFilename: DEBUG ? '[id].chunk.js' : '[chunkhash].js',
     },
     module: {
         loaders: [
@@ -49,6 +50,10 @@ module.exports = {
             root: process.cwd(),
         }),
         new ExtractTextPlugin(DEBUG ? 'style.css' : '[contenthash].css'),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'main',
+            minChunks: 2,
+        }),
         ...(!DEBUG ? [
             new webpack.DefinePlugin({
                 'process.env': {
@@ -63,7 +68,6 @@ module.exports = {
                 },
                 comments: false,
             }),
-            new webpack.optimize.AggressiveMergingPlugin(),
         ] : []),
     ],
 };
