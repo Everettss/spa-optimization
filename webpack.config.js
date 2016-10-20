@@ -87,7 +87,7 @@ const client = {
 };
 
 const server = {
-    entry: './src/server.js',
+    entry: path.resolve(__dirname, 'src', 'server.js'),
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: 'server.js',
