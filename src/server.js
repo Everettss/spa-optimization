@@ -4,7 +4,6 @@ import ReactDOMServer from 'react-dom/server';
 import { Router, match, createMemoryHistory } from 'react-router';
 import express from 'express';
 import path from 'path';
-import fs from 'fs';
 import routes from './routes';
 import WithStylesContext from './WithStylesContext';
 
@@ -26,22 +25,18 @@ app.get('*', (req, res) => {
                 <Router {...renderProps} />
             </WithStylesContext>
         );
-        fs.readFile('./build/webpack-assets.json', 'utf8', (err, manifest) => {
-            const { js } = JSON.parse(manifest).main;
-
-            const html =
-                `<html>
-                    <head>
-                        <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-                        <script async src="${js}"></script>
-                        <style id="css">${css.join('')}</style>
-                    </head>
-                    <body>
-                        <div id="root">${body}</div>
-                    </body>
-                </html>`;
-            res.status(200).send(html);
-        });
+        const html =
+            `<html>
+                <head>
+                    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+                    <script async src="bundle.js"></script>
+                    <style id="css">${css.join('')}</style>
+                </head>
+                <body>
+                    <div id="root">${body}</div>
+                </body>
+            </html>`;
+        res.status(200).send(html);
     });
 });
 

@@ -1,28 +1,28 @@
 
 import Layout from './Containers/Layout';
-import backgroundLader from './backgroundLoader';
+import backgroundLoader from './backgroundLoader';
 
 const HomePage = (nextState, cb) => {
     require.ensure([], require => {
         cb(null, require('./Containers/Pages/Home').default);
-    });
+    }, 'home');
 };
 
 const TalksPage = (nextState, cb) => {
     require.ensure([], require => {
         cb(null, require('./Containers/Pages/Talks').default);
-    });
+    }, 'talks');
 };
 
 const GalleryPage = (nextState, cb) => {
     require.ensure([], require => {
         cb(null, require('./Containers/Pages/Gallery').default);
-    });
+    }, 'gallery');
 };
 
-backgroundLader(HomePage);
-backgroundLader(TalksPage);
-backgroundLader(GalleryPage);
+backgroundLoader(HomePage);
+backgroundLoader(TalksPage);
+backgroundLoader(GalleryPage);
 
 const routes = {
     path: '/',
