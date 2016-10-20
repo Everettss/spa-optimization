@@ -10,8 +10,8 @@ module.exports = {
     entry: path.resolve(__dirname, 'src', 'client.js'),
     output: {
         path: path.resolve(__dirname, 'build', 'public'),
-        publicPath: '/',
         filename: 'bundle.js',
+        publicPath: '/',
         chunkFilename: DEBUG ? '[name].[id].js' : '[name].[chunkhash].js',
     },
     module: {
@@ -51,8 +51,10 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             name: 'main',
             minChunks: 2,
+            children: true,
+            async: true,
         }),
-        ...(!DEBUG ? [
+        ...(DEBUG ? [] : [
             new webpack.DefinePlugin({
                 'process.env': {
                     NODE_ENV: JSON.stringify('production'),
@@ -66,6 +68,6 @@ module.exports = {
                 },
                 comments: false,
             }),
-        ] : []),
+        ]),
     ],
 };
