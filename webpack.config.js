@@ -10,7 +10,6 @@ module.exports = {
     entry: path.resolve(__dirname, 'src', 'client.js'),
     output: {
         path: path.resolve(__dirname, 'build', 'public'),
-        publicPath: '/',
         filename: 'bundle.js',
     },
     module: {
@@ -47,7 +46,7 @@ module.exports = {
             root: process.cwd(),
         }),
         new ExtractTextPlugin('style.css', { allChunks: true }),
-        ...(!DEBUG ? [
+        ...(DEBUG ? [] : [
             new webpack.DefinePlugin({
                 'process.env': {
                     NODE_ENV: JSON.stringify('production'),
@@ -61,6 +60,6 @@ module.exports = {
                 },
                 comments: false,
             }),
-        ] : []),
+        ]),
     ],
 };
