@@ -41,8 +41,8 @@ const client = {
     entry: path.resolve(__dirname, 'src', 'client.js'),
     output: {
         path: path.resolve(__dirname, 'build', 'public'),
-        publicPath: '/',
         filename: 'bundle.js',
+        publicPath: '/',
         chunkFilename: DEBUG ? '[name].[id].js' : '[name].[chunkhash].js',
     },
     target: 'web',
@@ -65,8 +65,10 @@ const client = {
         new webpack.optimize.CommonsChunkPlugin({
             name: 'main',
             minChunks: 2,
+            children: true,
+            async: true,
         }),
-        ...(!DEBUG ? [
+        ...(DEBUG ? [] : [
             new webpack.DefinePlugin({
                 'process.env': {
                     NODE_ENV: JSON.stringify('production'),
@@ -80,7 +82,7 @@ const client = {
                 },
                 comments: false,
             }),
-        ] : []),
+        ]),
     ],
 };
 
@@ -97,18 +99,18 @@ const server = {
             ...loaders,
             {
                 test: [/\.scss$/, /\.css$/],
-                loader: 'ignore-loader',
+                loader: 'ignore-loader', // disable ExtractTextPlugin
             },
             Object.assign({}, urlLoader, {
                 query: Object.assign({}, urlLoader.query, {
-                    emitFile: false,
+                    emitFile: false, // disable emitting on node build since they are created on client
                 })
             })
         ],
     },
     plugins: [
         new webpack.optimize.LimitChunkCountPlugin({
-            maxChunks: 1,
+            maxChunks: 1, // disable creating chunks for node
         })
     ],
     node: {
@@ -120,7 +122,7 @@ const server = {
         __dirname: false,
     },
     externals: [nodeExternals({
-        whitelist: [/\.css/],
+        whitelist: [/\.css/], // traverse through css files from node modules
     })],
 };
 
