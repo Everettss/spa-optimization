@@ -12,7 +12,7 @@ module.exports = {
         path: path.resolve(__dirname, 'build', 'public'),
         publicPath: '/',
         filename: 'bundle.js',
-        chunkFilename: DEBUG ? '[id].chunk.js' : '[chunkhash].js',
+        chunkFilename: DEBUG ? '[name].[id].js' : '[name].[chunkhash].js',
     },
     module: {
         loaders: [

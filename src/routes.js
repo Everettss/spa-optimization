@@ -1,32 +1,38 @@
 
 import Layout from './Containers/Layout';
 
+const HomePage = (nextState, cb) => {
+    require.ensure([], require => {
+        cb(null, require('./Containers/Pages/Home').default);
+    }, 'home');
+};
+
+const TalksPage = (nextState, cb) => {
+    require.ensure([], require => {
+        cb(null, require('./Containers/Pages/Talks').default);
+    }, 'talks');
+};
+
+const GalleryPage = (nextState, cb) => {
+    require.ensure([], require => {
+        cb(null, require('./Containers/Pages/Gallery').default);
+    }, 'gallery');
+};
+
 const routes = {
     path: '/',
     component: Layout,
     indexRoute: {
-        getComponent: (nextState, cb) => {
-            require.ensure([], require => {
-                cb(null, require('./Containers/Pages/Home').default);
-            });
-        },
+        getComponent: HomePage,
     },
     childRoutes: [
         {
             path: 'talks',
-            getComponent: (nextState, cb) => {
-                require.ensure([], require => {
-                    cb(null, require('./Containers/Pages/Talks').default);
-                });
-            },
+            getComponent: TalksPage,
         },
         {
             path: 'gallery',
-            getComponent: (nextState, cb) => {
-                require.ensure([], require => {
-                    cb(null, require('./Containers/Pages/Gallery').default);
-                });
-            },
+            getComponent: GalleryPage,
         },
     ],
 };
