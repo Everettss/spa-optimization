@@ -1,7 +1,6 @@
 
 const webpack = require('webpack');
 const path = require('path');
-const AssetsPlugin = require('assets-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -12,8 +11,8 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'build', 'public'),
         publicPath: '/',
-        filename: DEBUG ? 'bundle.js' : '[hash].js',
-        chunkFilename: DEBUG ? '[id].chunk.js' : '[chunkhash].js',
+        filename: 'bundle.js',
+        chunkFilename: DEBUG ? '[name].[id].js' : '[name].[chunkhash].js',
     },
     module: {
         loaders: [
@@ -45,11 +44,10 @@ module.exports = {
     },
     devtool: DEBUG ? 'eval-source-map' : false,
     plugins: [
-        new AssetsPlugin({ path: path.join(__dirname, 'build')}),
         new CleanWebpackPlugin(['build'], {
             root: process.cwd(),
         }),
-        new ExtractTextPlugin(DEBUG ? 'style.css' : '[contenthash].css'),
+        new ExtractTextPlugin('style.css', { allChunks: true }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'main',
             minChunks: 2,
