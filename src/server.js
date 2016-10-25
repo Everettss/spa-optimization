@@ -12,11 +12,11 @@ app.get('*', (req, res) => {
         `<html>
             <head>
                 <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-                <link rel="stylesheet" type="text/css" href="style.css">
-                <script async src="bundle.js"></script>
+                <link rel="stylesheet" href="/style.css">
             </head>
             <body>
                 <div id="root">Loading</div>
+                <script async src="/bundle.js"></script>
             </body>
         </html>`;
     res.status(200).send(html);
