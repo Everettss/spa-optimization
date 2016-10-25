@@ -29,11 +29,11 @@ app.get('*', (req, res) => {
             `<html>
                 <head>
                     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-                    <script async src="bundle.js"></script>
                     <style id="css">${css.join('')}</style>
                 </head>
                 <body>
                     <div id="root">${body}</div>
+                    <script async src="/bundle.js"></script>
                 </body>
             </html>`;
         res.status(200).send(html);
