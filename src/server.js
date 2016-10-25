@@ -13,7 +13,6 @@ app.get('*', (req, res) => {
             <head>
                 <link rel="icon" href="data:;base64,iVBORw0KGgo=">
                 <link rel="stylesheet" href="/style.css">
-                <script async src="bundle.js"></script>
             </head>
             <body>
                 <div id="root">Loading</div>
