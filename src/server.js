@@ -19,7 +19,7 @@ app.get('*', (req, res) => {
             `<html>
                 <head>
                     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-                    <link rel="stylesheet" type="text/css" href="/style.css">
+                    <link rel="stylesheet" href="/style.css">
                 </head>
                 <body>
                     <div id="root">${body}</div>
