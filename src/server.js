@@ -32,6 +32,7 @@ app.get('*', (req, res) => {
                     <style id="css">${css.join('')}</style>
                 </head>
                 <body>
+                    <div class="stage">4</div>
                     <div id="root">${body}</div>
                     <script async src="/bundle.js"></script>
                 </body>
