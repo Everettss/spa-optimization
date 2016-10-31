@@ -14,3 +14,10 @@ body {
 .container {
   padding: 15px 0;
 }
+
+.loading-msg {
+  text-align: center;
+  margin-top: 50px;
+  color: $red;
+  font-size: 45px;
+}
