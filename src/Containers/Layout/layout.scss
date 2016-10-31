@@ -14,3 +14,19 @@ body {
 .container {
   padding: 15px 0;
 }
+
+.stage {
+  font-size: 45px;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  opacity: 0.5;
+  font-weight: 700;
+  pointer-events: none;
+
+  &:before {
+    content: 'stage ';
+    font-size: 35px;
+    font-weight: 300;
+  }
+}

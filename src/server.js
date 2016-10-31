@@ -22,6 +22,7 @@ app.get('*', (req, res) => {
                     <link rel="stylesheet" href="/style.css">
                 </head>
                 <body>
+                    <div class="stage">3</div>
                     <div id="root">${body}</div>
                     <script async src="/bundle.js"></script>
                 </body>
