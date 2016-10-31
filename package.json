@@ -1,5 +1,7 @@
 {
-  "private": true,
+  "name" : "spa-optimization",
+  "url" : "https://github.com/Everettss/spa-optimization",
+  "description": "Application for presentation https://github.com/Everettss/spa-optimization-presentation",
   "scripts": {
     "nodemon": "nodemon src/server.js --watch src/server.js",
     "webpack": "node ./node_modules/webpack/bin/webpack.js",
