@@ -32,8 +32,8 @@ app.get('*', (req, res) => {
                     <style id="css">${css.join('')}</style>
                 </head>
                 <body>
-                    <div class="stage">4</div>
                     <div id="root">${body}</div>
+                    <div class="stage">4</div>
                     <script async src="/bundle.js"></script>
                 </body>
             </html>`;
