@@ -15,8 +15,8 @@ app.get('*', (req, res) => {
                 <link rel="stylesheet" href="/style.css">
             </head>
             <body>
-                <div class="stage">2</div>
                 <div id="root"><div class="loading-msg">Loading</div></div>
+                <div class="stage">2</div>
                 <script async src="/bundle.js"></script>
             </body>
         </html>`;
