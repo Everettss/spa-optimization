@@ -13,6 +13,7 @@
   "dependencies": {
     "express": "^4.13.4",
     "history": "2.1.2",
+    "isomorphic-style-loader": "^1.0.0",
     "react": "15.1.0",
     "react-dom": "15.1.0",
     "react-image-gallery": "^0.7.2",
