@@ -53,7 +53,7 @@ const client = {
         path: path.resolve(__dirname, 'build', 'public'),
         filename: 'bundle.js',
         publicPath: '/',
-        chunkFilename: DEBUG ? '[name].[id].js' : '[name].[chunkhash].js',
+        chunkFilename: '[name].[id].js',
     },
     target: 'web',
     node: {
