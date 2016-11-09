@@ -9,7 +9,7 @@ $ git https://github.com/Everettss/spa-optimization.git
 $ cd spa-optimization
 ```
 
-Make sure that you use `Node 6` or newer.
+Make sure that you use `Node 6`.
 
 ## 2. Install dependencies 
 
