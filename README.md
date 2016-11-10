@@ -33,7 +33,7 @@ $ npm run show
 
 ## 4. Check all stages!
 
-This repo contains 5 branches according to [presentation](https://github.com/Everettss/spa-optimization-presentation)
+This repo contains 5 branches according to [presentation](https://everettss.github.io/spa-optimization-presentation/)
 - `master` - initial not optimazed app (`stage0`)
 - `stage1`
 - `stage2`
