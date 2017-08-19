@@ -1,6 +1,7 @@
 # spa-optimization
 
 Application used in presentation [spa-optimization-presentation](https://everettss.github.io/spa-optimization-presentation/)
+[Video of this presentation](https://youtu.be/R8La_pSPSGY)[PL]
 
 ## 1. Clone app
 
